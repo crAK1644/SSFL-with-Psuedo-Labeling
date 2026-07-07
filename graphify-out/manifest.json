@@ -1575,8 +1575,8 @@
     "semantic_hash": ""
   },
   ".start/specs/001-ssfl-paper-reproduction/manifest.md": {
-    "mtime": 1783373826.586714,
-    "ast_hash": "c695ed9ac390136786d0b95cf37778e4",
+    "mtime": 1783414710.0286407,
+    "ast_hash": "84a0513f25dcd842ae9e4084077d79d4",
     "semantic_hash": ""
   },
   ".start/specs/001-ssfl-paper-reproduction/requirements.md": {
@@ -1847,6 +1847,56 @@
   "Semisupervised_Federated-Learning-Based_Intrusion_Detection_Method_for_Internet_of_Things .pdf": {
     "mtime": 1779922910.0,
     "ast_hash": "9a90b47b5578de679549236efc71fc3d",
+    "semantic_hash": ""
+  },
+  "src/ssfl/comm.py": {
+    "mtime": 1783432250.8428419,
+    "ast_hash": "b3b692ace1f759c5b6f54b36355f21e3",
+    "semantic_hash": ""
+  },
+  "src/ssfl/methods/dsfl_logic.py": {
+    "mtime": 1783432163.0041869,
+    "ast_hash": "9964d973a85ec2aa85a685da80f0b88b",
+    "semantic_hash": ""
+  },
+  "src/ssfl/methods/fd_logic.py": {
+    "mtime": 1783432318.8387542,
+    "ast_hash": "8fc36dae209937c99f48218dbdccd256",
+    "semantic_hash": ""
+  },
+  "src/ssfl/methods/fl_logic.py": {
+    "mtime": 1783432045.9877036,
+    "ast_hash": "bef6f8b008f94b4180695f3f3a946c64",
+    "semantic_hash": ""
+  },
+  "src/ssfl/methods/ssfl_logic.py": {
+    "mtime": 1783438292.7910328,
+    "ast_hash": "5220b4d229816fc4d5338133d3af76a9",
+    "semantic_hash": ""
+  },
+  "tests/test_comm.py": {
+    "mtime": 1783432278.5897443,
+    "ast_hash": "760f8db622716fbaeb098cf791865ca0",
+    "semantic_hash": ""
+  },
+  "tests/test_dsfl_logic.py": {
+    "mtime": 1783432285.3892574,
+    "ast_hash": "f241b46493da3143577afc98d9db81d8",
+    "semantic_hash": ""
+  },
+  "tests/test_fd_logic.py": {
+    "mtime": 1783432176.2547493,
+    "ast_hash": "3e0f66b98bef0eea9313e400cedf8adf",
+    "semantic_hash": ""
+  },
+  "tests/test_fedavg_logic.py": {
+    "mtime": 1783432015.2657251,
+    "ast_hash": "a7831f2655eb9d4f56c6d48e8eb55e1d",
+    "semantic_hash": ""
+  },
+  "tests/test_ssfl_logic.py": {
+    "mtime": 1783438566.83777,
+    "ast_hash": "4d0bcf018be7dcf6b2bd969b66050b8e",
     "semantic_hash": ""
   }
 }

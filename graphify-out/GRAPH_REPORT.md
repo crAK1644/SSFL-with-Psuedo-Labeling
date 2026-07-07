@@ -1,16 +1,16 @@
 # Graph Report - SSFL with Psuedo Labeling  (2026-07-07)
 
 ## Corpus Check
-- 369 files · ~151,060 words
+- 379 files · ~166,728 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 3220 nodes · 3111 edges · 339 communities (327 shown, 12 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 77 edges (avg confidence: 0.68)
+- 3649 nodes · 4000 edges · 362 communities (345 shown, 17 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 194 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `47d908b7`
+- Built from commit: `f4d5128d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -352,39 +352,62 @@
 - [[_COMMUNITY_phase-2|phase-2.md]]
 - [[_COMMUNITY_conftest.py|conftest.py]]
 - [[_COMMUNITY_ssfl|ssfl]]
+- [[_COMMUNITY_ssfl_logic.py|ssfl_logic.py]]
+- [[_COMMUNITY_comm.py|comm.py]]
+- [[_COMMUNITY_dsfl_logic.py|dsfl_logic.py]]
+- [[_COMMUNITY_fl_logic.py|fl_logic.py]]
+- [[_COMMUNITY_MetricsStore|MetricsStore]]
+- [[_COMMUNITY_test_fedavg_logic.py|test_fedavg_logic.py]]
+- [[_COMMUNITY_test_dsfl_logic.py|test_dsfl_logic.py]]
+- [[_COMMUNITY_distill|distill]]
+- [[_COMMUNITY_test_comm.py|test_comm.py]]
+- [[_COMMUNITY_era|era]]
+- [[_COMMUNITY_models.py|models.py]]
+- [[_COMMUNITY_RunConfig|RunConfig]]
+- [[_COMMUNITY_build_model|build_model]]
+- [[_COMMUNITY__tiny_model|_tiny_model]]
+- [[_COMMUNITY_TestRoundCost|TestRoundCost]]
+- [[_COMMUNITY_average_logits|average_logits]]
+- [[_COMMUNITY_resolve_device|resolve_device]]
+- [[_COMMUNITY_._setup|._setup]]
+- [[_COMMUNITY_TestOpenSetCost|TestOpenSetCost]]
+- [[_COMMUNITY_TestClassificationMetrics|TestClassificationMetrics]]
+- [[_COMMUNITY_Naming Convention Catalogs|Naming Convention Catalogs]]
+- [[_COMMUNITY_Authentication|Authentication]]
+- [[_COMMUNITY_TestCumulativeCurve|TestCumulativeCurve]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `make()` - 24 edges
-2. `[Domain Concept/Entity Name]` - 20 edges
-3. `TableICNN` - 18 edges
-4. `[Service Name] Integration` - 18 edges
-5. `Reference: Framework Signatures` - 18 edges
-6. `TestValidationRejections` - 15 edges
-7. `Documentation Skill Reference` - 15 edges
-8. `Solution Design Document` - 15 edges
-9. `Gold-Standard Skill Conventions` - 15 edges
-10. `MetricsStore` - 14 edges
+1. `RunConfig` - 34 edges
+2. `MetricsStore` - 25 edges
+3. `make()` - 24 edges
+4. `[Domain Concept/Entity Name]` - 20 edges
+5. `payload_spec()` - 19 edges
+6. `_open()` - 19 edges
+7. `TableICNN` - 18 edges
+8. `_classifier()` - 18 edges
+9. `[Service Name] Integration` - 18 edges
+10. `Reference: Framework Signatures` - 18 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `store()` --calls--> `MetricsStore`  [INFERRED]
   tests/test_metrics_store.py → src/ssfl/metrics.py
-- `make()` --calls--> `RunConfig`  [INFERRED]
-  tests/test_config.py → src/ssfl/config.py
-- `TestDefaults` --uses--> `RunConfig`  [INFERRED]
-  tests/test_config.py → src/ssfl/config.py
-- `TestRunId` --uses--> `RunConfig`  [INFERRED]
-  tests/test_config.py → src/ssfl/config.py
-- `TestSeeding` --uses--> `RunConfig`  [INFERRED]
-  tests/test_config.py → src/ssfl/config.py
+- `TestCostAtTargets` --uses--> `RunConfig`  [INFERRED]
+  tests/test_comm.py → src/ssfl/config.py
+- `TestCumulativeCurve` --uses--> `RunConfig`  [INFERRED]
+  tests/test_comm.py → src/ssfl/config.py
+- `TestModelParamCount` --uses--> `RunConfig`  [INFERRED]
+  tests/test_comm.py → src/ssfl/config.py
+- `TestOpenSetCost` --uses--> `RunConfig`  [INFERRED]
+  tests/test_comm.py → src/ssfl/config.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (339 total, 12 thin omitted)
+## Communities (362 total, 17 thin omitted)
 
 ### Community 0 - "TableICNN"
-Cohesion: 0.07
-Nodes (27): device, Module, build_model(), LSTMNet, MLP, Tensor, Model zoo for the SSFL paper reproduction.  Pure PyTorch (no Flower imports). Pr, LSTM comparison model.      Treats the ``[B, 23, 5]`` input as a length-5 sequen (+19 more)
+Cohesion: 0.15
+Nodes (11): Table I Conv1D CNN.      Layers 1-4: Conv1d 64 filters, kernel 3, stride 1  -> (, TableICNN, _batch(), Tensor, Tests for the model zoo (Table I CNN, MLP, LSTM) and the device helper., Comparison models are the same order of magnitude as the CNN., Intermediate activations must match Table I exactly for batch 80., MLP and LSTM share the CNN's input/output signature: [B,23,5] -> [B,11]. (+3 more)
 
 ### Community 1 - "[Domain Concept/Entity Name]"
 Cohesion: 0.04
@@ -399,8 +422,8 @@ Cohesion: 0.04
 Nodes (48): Assumptions, Competitive Analysis, Constraints, Constraints and Assumptions, Could Have Features, CRITICAL GATES (Must Pass), Detailed Feature Specifications, Feature 10: Suite orchestration (+40 more)
 
 ### Community 4 - "make"
-Cohesion: 0.07
-Nodes (16): derive_seed(), _fmt(), make_rng(), Run configuration: validated RunConfig, deterministic run-id, seeding discipline, Deterministic id: {method}-{model}-s{scenario}-seed{seed}[-flags].          Non-, Derive a 32-bit seed from (run seed, client_id, round).      Single source of st, A numpy Generator whose stream is fully determined by (seed, client, round)., Immutable, validated configuration for one experiment run. (+8 more)
+Cohesion: 0.13
+Nodes (5): make(), Tests for ssfl.config: RunConfig defaults, validation, run-id, seeding., TestDefaults, TestRunId, TestValidationRejections
 
 ### Community 5 - "Security Review Checklist"
 Cohesion: 0.04
@@ -423,8 +446,8 @@ Cohesion: 0.05
 Nodes (41): Assumptions [NEEDS CLARIFICATION: What are we assuming that is not explicitly defined], Competitive Analysis, Constraints and Assumptions, Constraints [NEEDS CLARIFICATION: What are limiting factors], Could Have Features, CRITICAL GATES (Must Pass), Detailed Feature Specifications, Feature 1: [NEEDS CLARIFICATION: Feature name] (+33 more)
 
 ### Community 10 - "MetricsStore"
-Cohesion: 0.07
-Nodes (18): Any, ndarray, MetricsStore, Path, Durable run-results store for results/<run-id>/ (ADR-7).  Layout (solution.md, D, All completed round records, in append order.      A truncated trailing line (in, Durable metrics writer/reader for one run directory., Persist the resolved run config at run start. (+10 more)
+Cohesion: 0.11
+Nodes (7): Tests for ssfl.metrics: durable per-round metrics under results/<run-id>/., store(), TestConfusionMatrix, TestFinalAtomicity, TestLayoutAndConfig, TestReader, TestRoundAppends
 
 ### Community 11 - "SKILL.md"
 Cohesion: 0.06
@@ -460,7 +483,7 @@ Nodes (33): 1. Gather Context, 2. Synthesize Findings, Canonical Example, Constr
 
 ### Community 19 - "payload_nbytes"
 Cohesion: 0.09
-Nodes (12): ArraySpec, payload_nbytes(), payload_spec(), Payload contract: single source of truth for every method's exchanged arrays.  N, The ArraySpec exchanged by `method` in `direction`.      `label_mode` only affec, Analytic byte size of one payload in one direction (comm accounting)., One exchanged array: name, dtype, symbolic shape, optional precision.      ``dec, Byte size given concrete dims (keyed by the symbolic dim names). (+4 more)
+Nodes (14): ArraySpec, payload_nbytes(), payload_spec(), Payload contract: single source of truth for every method's exchanged arrays.  N, The ArraySpec exchanged by `method` in `direction`.      `label_mode` only affec, Analytic byte size of one payload in one direction (comm accounting)., One exchanged array: name, dtype, symbolic shape, optional precision.      ``dec, Byte size given concrete dims (keyed by the symbolic dim names). (+6 more)
 
 ### Community 20 - "Drift Detection Reference"
 Cohesion: 0.06
@@ -628,7 +651,7 @@ Nodes (8): Phase 1: Domain Foundation, Tasks, Phase 2: API Layer, Tasks, Phase 3
 
 ### Community 61 - "Pattern Catalogs"
 Cohesion: 0.17
-Nodes (11): Configuration Patterns, Error Handling Patterns, File Naming Patterns, Function/Method Naming, Naming Convention Catalogs, Pattern Catalogs, Test Naming Conventions, Test Organization (+3 more)
+Nodes (11): Architectural Pattern Catalogs, Configuration Patterns, Dependency Direction, Error Handling Patterns, Layer Identification, Pattern Catalogs, State Management Patterns, Test Naming Conventions (+3 more)
 
 ### Community 62 - "OWASP Top 10 Review Patterns"
 Cohesion: 0.17
@@ -780,7 +803,7 @@ Nodes (8): Error Classification, Error Handling Patterns, Logging Levels, Patter
 
 ### Community 100 - "Reference: Framework Signatures"
 Cohesion: 0.22
-Nodes (8): Authentication, Clerk, External Resources, NextAuth.js / Auth.js, Overview, Quick Reference, Reference: Framework Signatures, Supabase Auth
+Nodes (8): Expo, External Resources, Flutter, Mobile Frameworks, Overview, Quick Reference, React Native, Reference: Framework Signatures
 
 ### Community 101 - "SKILL.md"
 Cohesion: 0.22
@@ -1479,16 +1502,16 @@ Cohesion: 0.50
 Nodes (4): Example 7: State Management Patterns, Pattern Application, Pattern Discovery, Pattern Recognition
 
 ### Community 275 - "Architectural Pattern Catalogs"
-Cohesion: 0.50
-Nodes (4): Architectural Pattern Catalogs, Dependency Direction, Layer Identification, State Management Patterns
+Cohesion: 0.06
+Nodes (48): _as_batches(), classification_metrics(), evaluate_model(), evaluate_model_full(), fd_aggregate(), fd_client_step(), fd_distill_step(), _forward_logits() (+40 more)
 
 ### Community 276 - "Code Organization Catalogs"
 Cohesion: 0.50
 Nodes (4): Code Organization Catalogs, Comment and Documentation Patterns, Export Patterns, Import Organization
 
 ### Community 277 - "Mobile Frameworks"
-Cohesion: 0.50
-Nodes (4): Expo, Flutter, Mobile Frameworks, React Native
+Cohesion: 0.08
+Nodes (25): cache_subsets(), _classifier(), _ConstantLogits, _data(), _discriminator(), _open(), Module, Tests for the pure SSFL method logic (Zhao et al. 2023, Eqs. 11-18, Algorithm 1) (+17 more)
 
 ### Community 278 - "Output Format Reference"
 Cohesion: 0.50
@@ -1682,25 +1705,97 @@ Nodes (3): CRITICAL GATES (Must Pass), QUALITY CHECKS (Should Pass), Validation 
 Cohesion: 0.67
 Nodes (3): CRITICAL GATES (Must Pass), QUALITY CHECKS (Should Pass), Validation Checklist
 
+### Community 339 - "ssfl_logic.py"
+Cohesion: 0.09
+Nodes (40): derive_seed(), make_rng(), Run configuration: validated RunConfig, deterministic run-id, seeding discipline, Derive a 32-bit seed from (run seed, client_id, round).      Single source of st, A numpy Generator whose stream is fully determined by (seed, client, round)., aggregate(), _batches(), classification_metrics() (+32 more)
+
+### Community 340 - "comm.py"
+Cohesion: 0.09
+Nodes (30): cost_at_accuracy(), cost_at_targets(), cost_at_top_acc(), CostAt, cumulative_mb_curve(), model_param_count(), open_set_cost_bytes(), Any (+22 more)
+
+### Community 341 - "dsfl_logic.py"
+Cohesion: 0.15
+Nodes (27): dtype, aggregate(), _as_tensor(), _batches(), classification_metrics(), client_step(), evaluate(), final_metrics() (+19 more)
+
+### Community 342 - "fl_logic.py"
+Cohesion: 0.15
+Nodes (25): ModelFn, aggregate(), classification_metrics(), client_step(), evaluate(), evaluate_full(), get_weights(), init_weights() (+17 more)
+
+### Community 343 - "MetricsStore"
+Cohesion: 0.12
+Nodes (12): MetricsStore, Any, ndarray, Path, Durable run-results store for results/<run-id>/ (ADR-7).  Layout (solution.md, D, All completed round records, in append order.      A truncated trailing line (in, Durable metrics writer/reader for one run directory., Persist the resolved run config at run start. (+4 more)
+
+### Community 344 - "test_fedavg_logic.py"
+Cohesion: 0.11
+Nodes (16): init_w(), model_fn(), Tests for the pure FedAvg logic (Eq. 1): client step, aggregation, round driver,, One full round == every client trains from the global weights with its     deriv, 2-round FedAvg micro-run on tiny real subsets: loss goes down., ADR-4: pure logic module — no Flower/Ray anywhere in the source., Two clients' private data, truncated to TINY samples each., test_client_step_rejects_empty_dataset() (+8 more)
+
+### Community 345 - "test_dsfl_logic.py"
+Cohesion: 0.12
+Nodes (8): cache_subsets(), _ConstantLogits, Tests for DS-FL logic (ssfl.methods.dsfl_logic): Eqs. 5-10 + ERA.  Covers, per t, Tiny slices of the real cache: 2 clients, open set, test set., Always predicts `cls` regardless of input., TestEvaluate, TestSoftmax, TestTwoRoundMicroRun
+
+### Community 346 - "distill"
+Cohesion: 0.13
+Nodes (10): distill(), Eq. 9 (client) / Eq. 10 (server model): distill on the ERA soft labels.      Tra, CON-2: Adam lr 1e-4, batch 80 (client step and distillation)., Distillation consumes soft labels from aggregation only — the         signature, ssfl.data.load_open returns a single array — no label view exists         for th, Every function touching the open set takes X only., Pure logic (ADR-4): data is passed in; the module never imports         ssfl.dat, Distillation on the open set is driven purely by the uploaded         logits: pe (+2 more)
+
+### Community 347 - "test_comm.py"
+Cohesion: 0.16
+Nodes (5): Tests for ssfl.comm — analytic communication-cost accounting.  Every byte count, _records(), TestCostAtTargets, TestModelParamCount, TestScenarioClients
+
+### Community 348 - "era"
+Cohesion: 0.19
+Nodes (8): era(), Eqs. 7-8: Entropy Reduction Aggregation — sharpening temperature softmax.      `, _entropy(), ndarray, The load-bearing property: ERA output entropy < plain-softmax entropy., T >= 1 inverts the mechanism (softens); T <= 0 is undefined., Row-wise Shannon entropy (natural log)., TestEra
+
+### Community 349 - "models.py"
+Cohesion: 0.18
+Nodes (6): LSTMNet, MLP, Tensor, Model zoo for the SSFL paper reproduction.  Pure PyTorch (no Flower imports). Pr, LSTM comparison model.      Treats the ``[B, 23, 5]`` input as a length-5 sequen, Fully-connected comparison model: flattened 23*5=115 features in.
+
+### Community 350 - "RunConfig"
+Cohesion: 0.23
+Nodes (6): _fmt(), Deterministic id: {method}-{model}-s{scenario}-seed{seed}[-flags].          Non-, Immutable, validated configuration for one experiment run., Reject invalid values/combinations before anything launches., RunConfig, TestRoundCostForConfig
+
+### Community 351 - "build_model"
+Cohesion: 0.23
+Nodes (6): build_model(), Module, Build a model by name (``"cnn"``, ``"mlp"``, ``"lstm"``), case-insensitive., Every model completes one forward+backward+optimizer step on each     available, TestBuildModel, TestTrainStepOnDevice
+
+### Community 352 - "_tiny_model"
+Cohesion: 0.29
+Nodes (7): Module, Supervised training must actually update parameters., Eq. 5: the upload is the trained model's logits on the open set., A small deterministic classifier over the [B, 23, 5] input., TestClientStep, _tiny_data(), _tiny_model()
+
+### Community 354 - "average_logits"
+Cohesion: 0.27
+Nodes (4): average_logits(), Eq. 6: elementwise mean of the K client logit matrices.      ``client_logits``:, TestAggregate, TestAverageLogits
+
+### Community 355 - "resolve_device"
+Cohesion: 0.33
+Nodes (4): device, Resolve a device name to a :class:`torch.device`.      ``"auto"`` picks cuda if, resolve_device(), TestResolveDevice
+
+### Community 359 - "Naming Convention Catalogs"
+Cohesion: 0.50
+Nodes (4): File Naming Patterns, Function/Method Naming, Naming Convention Catalogs, Variable Naming
+
+### Community 360 - "Authentication"
+Cohesion: 0.50
+Nodes (4): Authentication, Clerk, NextAuth.js / Auth.js, Supabase Auth
+
 ## Knowledge Gaps
 - **2032 isolated node(s):** `ssfl`, `Persona`, `Interface`, `Constraints`, `References` (+2027 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Solution Design Document` connect `Solution Design Document` to `Glossary`, `SDD Validation Checklist`, `Output Schema`, `Risks and Technical Debt`, `Runtime View`, `Building Block View`, `Validation Checklist`, `Cross-Cutting Concepts`, `Implementation Context`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Why does `Reference: Framework Signatures` connect `Reference: Framework Signatures` to `Frontend Frameworks`, `Meta-Frameworks`, `Backend Frameworks (Node.js)`, `CSS and Styling`, `Build Tools and Bundlers`, `Database and ORM`, `Testing Frameworks`, `Mobile Frameworks`, `API and Data Fetching`, `Deployment Platforms`, `Python Frameworks`, `State Management`, `Monorepo Tools`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Why does `Implementation Context` connect `Implementation Context` to `Solution Design Document`?**
-  _High betweenness centrality (0.001) - this node is a cross-community bridge._
-- **Are the 15 inferred relationships involving `TableICNN` (e.g. with `models.py` and `TestBuildModel`) actually correct?**
-  _`TableICNN` has 15 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `RunConfig` connect `RunConfig` to `TestRoundCost`, `make`, `TestOpenSetCost`, `TestCumulativeCurve`, `ssfl_logic.py`, `comm.py`, `Mobile Frameworks`, `MetricsStore`, `test_comm.py`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `payload_spec()` connect `payload_nbytes` to `_tiny_model`, `average_logits`, `._setup`, `Architectural Pattern Catalogs`, `Mobile Frameworks`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `derive_seed()` connect `ssfl_logic.py` to `test_fedavg_logic.py`, `Architectural Pattern Catalogs`, `._setup`, `fl_logic.py`?**
+  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **Are the 28 inferred relationships involving `RunConfig` (e.g. with `CostAt` and `RoundCost`) actually correct?**
+  _`RunConfig` has 28 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 17 inferred relationships involving `MetricsStore` (e.g. with `TestCostAtTargets` and `TestCumulativeCurve`) actually correct?**
+  _`MetricsStore` has 17 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 15 inferred relationships involving `payload_spec()` (e.g. with `.test_matches_dsfl_download_contract()` and `.test_returns_upload_contract_payload()`) actually correct?**
+  _`payload_spec()` has 15 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Resolve template path with skill-first, legacy-fallback pattern.      Resolution`, `Resolve the active specs directory.      Resolution order:     1. .start/specs/`, `Get next available spec ID by scanning existing directories.` to the rest of the system?**
-  _2083 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `TableICNN` be split into smaller, more focused modules?**
-  _Cohesion score 0.06766917293233082 - nodes in this community are weakly interconnected._
-- **Should `[Domain Concept/Entity Name]` be split into smaller, more focused modules?**
-  _Cohesion score 0.04081632653061224 - nodes in this community are weakly interconnected._
+  _2194 weakly-connected nodes found - possible documentation gaps or missing edges._

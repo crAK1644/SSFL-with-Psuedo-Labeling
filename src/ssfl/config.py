@@ -94,6 +94,11 @@ class RunConfig:
                     f"(got method={self.method!r}); non-ssfl runs must use "
                     f"label_mode={_DEFAULT_LABEL_MODE!r}"
                 )
+        elif self.no_voting and self.label_mode != _DEFAULT_LABEL_MODE:
+            raise ValueError(
+                "no_voting has no distinct effect when label_mode != 'hard' "
+                f"(soft-label aggregation is already a mean); got label_mode={self.label_mode!r}"
+            )
 
         for name in ("rounds", "batch", "local_epochs", "num_parallel_clients"):
             value = getattr(self, name)

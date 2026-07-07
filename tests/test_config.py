@@ -96,6 +96,13 @@ class TestValidationRejections:
     def test_default_threshold_and_label_mode_fine_for_non_ssfl(self):
         make(method="fl", threshold="median", label_mode="hard")
 
+    def test_no_voting_with_soft_label_mode_rejected(self):
+        """no_voting would be silently indistinguishable from soft-mode
+        aggregation (both are already a mean) — reject at config time."""
+        with pytest.raises(ValueError) as exc:
+            make(no_voting=True, label_mode="soft4")
+        assert "no_voting" in str(exc.value)
+
     def test_nonpositive_rounds_rejected(self):
         with pytest.raises(ValueError):
             make(rounds=0)
@@ -127,8 +134,8 @@ class TestRunId:
         assert make(method="ssfl", model="mlp", scenario=2, seed=4).run_id() != base.run_id()
 
     def test_same_config_same_id(self):
-        a = make(no_voting=True, threshold=0.8, label_mode="soft4")
-        b = make(no_voting=True, threshold=0.8, label_mode="soft4")
+        a = make(no_discriminating=True, threshold=0.8, label_mode="soft4")
+        b = make(no_discriminating=True, threshold=0.8, label_mode="soft4")
         assert a.run_id() == b.run_id()
 
     def test_default_flags_add_no_suffix(self):

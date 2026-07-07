@@ -1,0 +1,129 @@
+{
+ "class_map": {
+  "benign": 0,
+  "gafgyt.combo": 1,
+  "gafgyt.junk": 2,
+  "gafgyt.scan": 3,
+  "gafgyt.tcp": 4,
+  "gafgyt.udp": 5,
+  "mirai.ack": 6,
+  "mirai.scan": 7,
+  "mirai.syn": 8,
+  "mirai.udp": 9,
+  "mirai.udpplain": 10
+ },
+ "num_samples": 89000,
+ "num_subsets": 89,
+ "per_device_class_counts": {
+  "1": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000,
+   "mirai.ack": 1000,
+   "mirai.scan": 1000,
+   "mirai.syn": 1000,
+   "mirai.udp": 1000,
+   "mirai.udpplain": 1000
+  },
+  "2": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000,
+   "mirai.ack": 1000,
+   "mirai.scan": 1000,
+   "mirai.syn": 1000,
+   "mirai.udp": 1000,
+   "mirai.udpplain": 1000
+  },
+  "3": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000
+  },
+  "4": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000,
+   "mirai.ack": 1000,
+   "mirai.scan": 1000,
+   "mirai.syn": 1000,
+   "mirai.udp": 1000,
+   "mirai.udpplain": 1000
+  },
+  "5": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000,
+   "mirai.ack": 1000,
+   "mirai.scan": 1000,
+   "mirai.syn": 1000,
+   "mirai.udp": 1000,
+   "mirai.udpplain": 1000
+  },
+  "6": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000,
+   "mirai.ack": 1000,
+   "mirai.scan": 1000,
+   "mirai.syn": 1000,
+   "mirai.udp": 1000,
+   "mirai.udpplain": 1000
+  },
+  "7": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000
+  },
+  "8": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000,
+   "mirai.ack": 1000,
+   "mirai.scan": 1000,
+   "mirai.syn": 1000,
+   "mirai.udp": 1000,
+   "mirai.udpplain": 1000
+  },
+  "9": {
+   "benign": 1000,
+   "gafgyt.combo": 1000,
+   "gafgyt.junk": 1000,
+   "gafgyt.scan": 1000,
+   "gafgyt.tcp": 1000,
+   "gafgyt.udp": 1000,
+   "mirai.ack": 1000,
+   "mirai.scan": 1000,
+   "mirai.syn": 1000,
+   "mirai.udp": 1000,
+   "mirai.udpplain": 1000
+  }
+ },
+ "raw_data_sha256": "0254cce53d6bbd7eb6f72f1f044174911ec07dfaac13d601497db2e792640112",
+ "rows_per_subset": 1000,
+ "seed": 42
+}
