@@ -1,15 +1,15 @@
 ---
 title: "SSFL Paper Reproduction — Semisupervised Federated-Learning IDS on N-BaIoT"
-status: pending
+status: in_progress
 threshold: 0.90
 max_iterations: 5
 ---
 # Decomposition Manifest
 
 ## Units
-- [ ] dc1: Mini-N-BaIoT data core (build, partition, load) — no dependencies
-- [ ] mz1: Model zoo (Table I CNN, MLP, LSTM) — no dependencies
-- [ ] fb1: Framework base (config, payload contract, durable metrics, seeding) — no dependencies
+- [x] dc1: Mini-N-BaIoT data core (build, partition, load) — no dependencies
+- [x] mz1: Model zoo (Table I CNN, MLP, LSTM) — no dependencies
+- [x] fb1: Framework base (config, payload contract, durable metrics, seeding) — no dependencies
 - [ ] fl1: FL method logic (FedAvg) — after: dc1, mz1, fb1
 - [ ] fd1: FD method logic (federated distillation) — after: dc1, mz1, fb1
 - [ ] ds1: DS-FL method logic (distillation-based semisupervised FL) — after: dc1, mz1, fb1
